@@ -22,6 +22,7 @@
                             <h2>Liên hệ</h2>
                             <p>Họ và tên: Lê Thị Loan</p>
                             <p>Số điện thoại: 0941543789</p>
+                            <p>Email: kieuloanxunghe3838@gmail.com</p>
                             <p>Địa chỉ: Số nhà LK17-16, đường Nguyễn Khiểm, Khu đô thị Xuân An, TDP7, Thị Trấn Xuân An,
                                 Huyện Nghi Xuân, Tỉnh Hà Tĩnh, Việt Nam</p>
                         </div>
