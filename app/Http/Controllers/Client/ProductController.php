@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Controllers\Client;
+
+use App\Models\Product;
+use App\Models\ProductColor;
+use App\Models\ProductSize;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+class ProductController extends Controller
+{
+    public function index(){
+        $products = Product::query()->limit(5)->get();
+        // dd($products);
+        return view('client.index',compact('products'));
+    }
+    public function detail($slug){
+        $product = Product::query()->with('variants')->where('slug', $slug)->first();
+        $colors = ProductColor::query()->pluck('name', 'id')->all();
+        $sizes = ProductSize::query()->pluck('name', 'id')->all();
+        // dd($product);
+
+        return view('client.product-detail', compact('product','colors','sizes'));
+
+    } 
+}
