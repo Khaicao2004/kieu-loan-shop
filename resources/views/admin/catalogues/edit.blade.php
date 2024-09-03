@@ -1,11 +1,11 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    Câp nhật danh mục sản phẩm: {{ $model->name }}
+    Câp nhật danh mục sản phẩm: {{ $catalogue->name }}
 @endsection
 
 @section('content')
-<form action="{{route('admin.catalogues.update', $model->id)}}" method="POST" enctype="multipart/form-data">
+<form action="{{route('admin.catalogues.update', $catalogue)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="row">
@@ -20,12 +20,12 @@
                           <div class="col-md-4">
                               <div>
                                   <label for="name" class="form-label">Name</label>
-                                  <input type="text" class="form-control" id="name" name="name"  value="{{$model->name}}">
+                                  <input type="text" class="form-control" id="name" name="name"  value="{{$catalogue->name}}">
                               </div>
                             <div class="mt-3">
                               <label for="cover" class="form-label">Cover</label>
                               <input type="file" class="form-control" id="cover" name="cover">
-                              <img src="{{\Storage::url($model->cover)}}" alt="" width="50px">
+                              <img src="{{\Storage::url($catalogue->cover)}}" alt="" width="50px">
                           </div>        
                           </div>
                           <div class="col-md-8">
@@ -33,7 +33,7 @@
                             <div class="col-md-2">
                               <div class="form-check form-switch form-switch-primary">
                                 <input class="form-check-input" type="checkbox" role="switch" name="is_active" id="is_active" value="1"   
-                                 @if ($model->is_active) checked @endif>
+                                 @if ($catalogue->is_active) checked @endif>
                                 <label class="form-check-label" for="is_active">Is Active</label>
                             </div>
                             </div>

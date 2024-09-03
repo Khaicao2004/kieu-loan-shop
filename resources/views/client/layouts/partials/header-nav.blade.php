@@ -8,9 +8,9 @@
         <div class="col-lg-6 col-md-6">
             <nav class="header__menu mobile-menu">
                 <ul>
-                    <li class="active"><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="{{ route('shop') }}">Shop</a></li>
-                    <li><a href="#">Pages</a>
+                    <li class="active"><a href="{{ route('index') }}">Home</a></li>
+                    {{-- <li><a href="{{ route('shop') }}">Shop</a></li> --}}
+                    {{-- <li><a href="#">Pages</a>
                         <ul class="dropdown">
                             <li><a href="{{ route('about') }}">About Us</a></li>
                             <li><a href="{{ route('shop-details') }}">Shop Details</a></li>
@@ -20,7 +20,7 @@
                         </ul>
                     </li>
                     <li><a href="{{ route('blog') }}">Blog</a></li>
-                    <li><a href="{{ route('contact') }}">Contacts</a></li>
+                    <li><a href="{{ route('contact') }}">Contacts</a></li> --}}
                 </ul>
             </nav>
         </div>
