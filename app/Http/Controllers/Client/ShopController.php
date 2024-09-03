@@ -10,6 +10,7 @@ use App\Models\ProductVariant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Tag;
 
 class ShopController extends Controller
 {
@@ -21,11 +22,12 @@ class ShopController extends Controller
         } else {
             $products = Product::query()->latest('id')->paginate(9);
         }
-        $catagories = Catalogue::query()->withCount('products')->get();
+        $catalogues = Catalogue::query()->withCount('products')->get();
         $colors = ProductColor::query()->withCount('variants')->get();
         $sizes = ProductSize::query()->withCount('variants')->get();
+        $tags = Tag::query()->pluck('name','id');
         // dd($colors->toArray());
-        return view('client.shop', compact('catagories', 'products', 'colors', 'sizes'));
+        return view('client.shop', compact('catalogues', 'products', 'colors', 'sizes','tags'));
     }
     public function filter(Request $request)
     {

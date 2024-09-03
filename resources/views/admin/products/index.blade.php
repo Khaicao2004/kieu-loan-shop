@@ -75,7 +75,7 @@
                                     </td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->sku }}</td>
-                                    <td>{{ $item->catelogue->name }}</td>
+                                    <td>{{ $item->catalogue->name }}</td>
                                     <td>{{ $item->price_regular }}</td>
                                     <td>{{ $item->price_sale }}</td>
                                     <td>{{ $item->views }}</td>

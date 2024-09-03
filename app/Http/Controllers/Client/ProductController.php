@@ -11,9 +11,11 @@ use App\Http\Controllers\Controller;
 class ProductController extends Controller
 {
     public function index(){
-        $products = Product::query()->limit(5)->get();
-        // dd($products);
-        return view('client.index',compact('products'));
+        $productNews = Product::where('is_new', true)->get();
+        $productSales = Product::where('is_hot_deal', true)->get();
+
+        // dd($productSales->toArray());
+        return view('client.index',compact('productNews','productSales'));
     }
     public function detail($slug){
         $product = Product::query()->with('variants')->where('slug', $slug)->first();
@@ -21,7 +23,7 @@ class ProductController extends Controller
         $sizes = ProductSize::query()->pluck('name', 'id')->all();
         // dd($product);
 
-        return view('client.product-detail', compact('product','colors','sizes'));
+        return view('client.shop-details', compact('product','colors','sizes'));
 
     } 
 }
