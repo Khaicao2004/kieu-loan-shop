@@ -16,9 +16,9 @@ class OrderController extends Controller
     {
         try {
             DB::transaction(function () {
-                if(Auth::check()){
+                if (Auth::check()) {
                     $user = Auth::user();
-                }else{
+                } else {
                     $user = User::query()->create([
                         'name' => request('user_name'),
                         'email' => request('user_email'),
@@ -55,7 +55,7 @@ class OrderController extends Controller
                 foreach ($dataItem as $item) {
                     $item['order_id'] = $order->id;
 
-                    OrderItem::query()->create( $item); 
+                    OrderItem::query()->create($item);
                 }
             });
 

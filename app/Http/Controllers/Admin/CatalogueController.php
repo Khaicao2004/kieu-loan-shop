@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Catelogue;
+use App\Models\Catalogue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,7 +16,7 @@ class CatalogueController extends Controller
      */
     public function index()
     {
-        $data = Catelogue::query()->latest('id')->get();
+        $data = Catalogue::query()->latest('id')->get();
         return view(self::PATH_VIEW . __FUNCTION__, compact('data'));
     }
 
@@ -41,7 +41,7 @@ class CatalogueController extends Controller
             $data['cover'] = Storage::put(self::PATH_UPLOAD, $request->file('cover'));
         }
       
-        Catelogue::query()->create($data);
+        Catalogue::query()->create($data);
 
         return redirect()->route('admin.catalogues.index');
     }
@@ -49,27 +49,23 @@ class CatalogueController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Catalogue $catalogue)
     {
-        $model = Catelogue::query()->findOrFail($id);
-
-        return view(self::PATH_VIEW . __FUNCTION__, compact('model'));
+        return view(self::PATH_VIEW . __FUNCTION__, compact('catalogue'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        $model = Catelogue::query()->findOrFail($id); 
-        return view(self::PATH_VIEW . __FUNCTION__, compact('model'));
+    public function edit(Catalogue $catalogue)
+    { 
+        return view(self::PATH_VIEW . __FUNCTION__, compact('catalogue'));
     }
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Catalogue $catalogue)
     {
-        $model = Catelogue::query()->findOrFail($id);
 
         $data = $request->except('cover');
         $data['is_active'] ??= 0;
@@ -77,9 +73,9 @@ class CatalogueController extends Controller
         if($request->hasFile('cover')){
             $data['cover'] = Storage::put(self::PATH_UPLOAD, $request->file('cover'));
         }
-        $currentCover = $model->cover;
+        $currentCover = $catalogue->cover;
 
-        $model->update($data);
+        $catalogue->update($data);
 
         if($request->hasFile('cover') && $currentCover && Storage::exists($currentCover)){
             Storage::delete($currentCover);
@@ -91,14 +87,13 @@ class CatalogueController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Catalogue $catalogue)
     {
-        $model = Catelogue::query()->findOrFail($id);
             
-        $model->delete();
+        $catalogue->delete();
 
-        if($model->cover && Storage::exists($model->cover)){
-            Storage::delete($model->cover);
+        if($catalogue->cover && Storage::exists($catalogue->cover)){
+            Storage::delete($catalogue->cover);
         }
 
         return back();
