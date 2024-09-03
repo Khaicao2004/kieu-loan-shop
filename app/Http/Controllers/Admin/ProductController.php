@@ -28,7 +28,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data = Product::query()->with(['catelogue', 'tags'])->latest('id')->get();
+        $data = Product::query()->with(['catalogue', 'tags'])->latest('id')->get();
         // dd($data->first()->toArray());             
         return view(self::PATH_VIEW . __FUNCTION__, compact('data'));
     }
@@ -51,7 +51,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $dataProduct = $request->except(['product_variants', 'tags', 'product_galleries']);
         $dataProduct['is_active'] = isset($dataProduct['is_active']) ? 1 : 0;
         $dataProduct['is_hot_deal'] = isset($dataProduct['is_active']) ? 1 : 0;

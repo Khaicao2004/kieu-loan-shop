@@ -1,47 +1,45 @@
 @extends('client.layouts.master')
 
 @section('title')
-   Chi tiết sản phẩm
+    Chi tiết sản phẩm
 @endsection
 @section('content')
-@include('client.layouts.components.breadcrumb', ['pageName' => 'Chi tiết sản phẩm', 'pageTitle' => 'Chi tiết sản phẩm'])
+    @include('client.layouts.components.breadcrumb', [
+        'pageName' => 'Chi tiết sản phẩm',
+        'pageTitle' => 'Chi tiết sản phẩm',
+    ])
     <!-- Shop Details Section Begin -->
     <section class="shop-details">
         <div class="product__details__pic">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="product__details__breadcrumb">
-                            <a href="./index.html">Home</a>
-                            <a href="./shop.html">Shop</a>
-                            <span>Product Details</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-lg-2 col-md-3">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">
-                                    <div class="product__thumb__pic set-bg" data-setbg="/client/img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg">
+                                    <div class="product__thumb__pic set-bg"
+                                        data-setbg="/client/img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg">
                                     </div>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">
-                                    <div class="product__thumb__pic set-bg" data-setbg="/client/img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg">
+                                    <div class="product__thumb__pic set-bg"
+                                        data-setbg="/client/img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg">
                                     </div>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">
-                                    <div class="product__thumb__pic set-bg" data-setbg="/client/img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg">
+                                    <div class="product__thumb__pic set-bg"
+                                        data-setbg="/client/img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg">
                                     </div>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">
-                                    <div class="product__thumb__pic set-bg" data-setbg="/client/img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg">
+                                    <div class="product__thumb__pic set-bg"
+                                        data-setbg="/client/img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg">
                                     </div>
                                 </a>
                             </li>
@@ -51,22 +49,26 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <div class="product__details__pic__item">
-                                    <img src="/client/img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg" alt="">
+                                    <img src="/client/img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg"
+                                        alt="">
                                 </div>
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
                                 <div class="product__details__pic__item">
-                                    <img src="/client/img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg" alt="">
+                                    <img src="/client/img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg"
+                                        alt="">
                                 </div>
                             </div>
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
                                 <div class="product__details__pic__item">
-                                    <img src="/client/img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg" alt="">
+                                    <img src="/client/img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg"
+                                        alt="">
                                 </div>
                             </div>
                             <div class="tab-pane" id="tabs-4" role="tabpanel">
                                 <div class="product__details__pic__item">
-                                    <img src="/client/img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg" alt="">
+                                    <img src="/client/img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg"
+                                        alt="">
                                 </div>
                             </div>
                         </div>
@@ -75,47 +77,26 @@
                         <div class="d-flex justify-content-center">
                             <div class="col-lg-12">
                                 <div class="product__details__text">
-                                    <h4>Mỹ phẩm</h4>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <span> - 5 Reviews</span>
-                                    </div>
-                                    <h3>500.000 VNĐ <span> 800.000</span></h3>
-                                    <p>Mô tả ngắn sản phẩm</p>
+                                    <h4>{{ $product->name }}</h4>
+                                    <h3>
+                                        {{ number_format($product->price_sale, 0, ',', '.') }}đ
+                                        <span> {{ number_format($product->price_regular, 0, ',', '.') }}đ</span>
+                                    </h3>
+                                    <p>{{ $product->description }}</p>
                                     <div class="product__details__option">
                                         <div class="product__details__option__size">
                                             <span>Size:</span>
-                                            <label for="xxl">xxl
-                                                <input type="radio" id="xxl">
+                                            @foreach ($sizes as $id => $name)
+                                            <label for="xxl">{{$name}}
+                                                <input type="radio" name="product_size_id" value="{{$id}}">
                                             </label>
-                                            <label class="active" for="xl">xl
-                                                <input type="radio" id="xl">
-                                            </label>
-                                            <label for="l">l
-                                                <input type="radio" id="l">
-                                            </label>
+                                                
+                                            @endforeach
                                         </div>
                                         <div class="product__details__option__color mt-3">
-                                            <span>Color:</span>
-                                            <label class="c-1" for="sp-1">
-                                                <input type="radio" id="sp-1">
-                                            </label>
-                                            <label class="c-2" for="sp-2">
-                                                <input type="radio" id="sp-2">
-                                            </label>
-                                            <label class="c-3" for="sp-3">
-                                                <input type="radio" id="sp-3">
-                                            </label>
-                                            <label class="c-4" for="sp-4">
-                                                <input type="radio" id="sp-4">
-                                            </label>
-                                            <label class="c-9" for="sp-9">
-                                                <input type="radio" id="sp-9">
-                                            </label>
+                                            @foreach ($colors as $id => $name)         
+                                            <span>Color: <input type="radio" name="product_color_id" value="{{$id}}">{{$name}}</span>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="product__details__cart__option">
@@ -128,9 +109,13 @@
                                     </div>
                                     <div class="product__details__last__option">
                                         <ul>
-                                            <li><span>SKU:</span> 3812912</li>
-                                            <li><span>Categories:</span> Clothes</li>
-                                            <li><span>Tag:</span> Clothes, Skin, Body</li>
+                                            <li><span>SKU:</span> {{ $product->sku }}</li>
+                                            <li><span>Cata:</span> {{ $product->catalogue->name }}</li>
+                                            <li><span>Tag:</span>
+                                                @foreach ($product->tags as $item)
+                                                    {{ $item->name }}
+                                                @endforeach
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -147,92 +132,39 @@
                         <div class="product__details__tab">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#tabs-5"
-                                    role="tab">Mô tả</a>
+                                    <a class="nav-link active" data-toggle="tab" href="#tabs-5" role="tab">Nội
+                                        dung</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">Mô tả</a>
+                                    <a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">Chất liệu</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#tabs-7" role="tab">Mô tả</a>
+                                    <a class="nav-link" data-toggle="tab" href="#tabs-7" role="tab">
+                                        Hướng dẫn sử dụng</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tabs-5" role="tabpanel">
                                     <div class="product__details__tab__content">
-                                        <p class="note">Mô tả dài</p>
-                                        <div class="product__details__tab__content__item">
-                                            <h5>Sản phẩm</h5>
-                                            <p>Cực kỳ chất lượng nhé mua đi ........................................</p>
-                                            <p>Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                            </p>
-                                        </div>
-                                        <div class="product__details__tab__content__item">
-                                            <h5>Sản phẩm</h5>
-                                            <p>Cực kỳ chất lượng nhé mua đi ........................................</p>
-                                            <p>Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                            </p>
-                                        </div>
+                                        @php
+                                            $contents = explode("\n", $product->content);
+                                        @endphp
+
+                                        @foreach ($contents as $content)
+                                            <p>{{ $content }}</p>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="tabs-6" role="tabpanel">
                                     <div class="product__details__tab__content">
                                         <div class="product__details__tab__content__item">
-                                            <p class="note">Mô tả dài</p>
-                                        <div class="product__details__tab__content__item">
-                                            <h5>Sản phẩm</h5>
-                                            <p>Cực kỳ chất lượng nhé mua đi ........................................</p>
-                                            <p>Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                            </p>
-                                        </div>
-                                        <div class="product__details__tab__content__item">
-                                            <h5>Sản phẩm</h5>
-                                            <p>Cực kỳ chất lượng nhé mua đi ........................................</p>
-                                            <p>Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                            </p>
-                                        </div>
+                                            <p>{!! nl2br(e($product->material)) !!}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="tabs-7" role="tabpanel">
                                     <div class="product__details__tab__content">
-                                        <p class="note">Mô tả dài</p>
-                                        <div class="product__details__tab__content__item">
-                                            <h5>Sản phẩm</h5>
-                                            <p>Cực kỳ chất lượng nhé mua đi ........................................</p>
-                                            <p>Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                            </p>
-                                        </div>
-                                        <div class="product__details__tab__content__item">
-                                            <h5>Sản phẩm</h5>
-                                            <p>Cực kỳ chất lượng nhé mua đi ........................................</p>
-                                            <p>Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                                Cực kỳ chất lượng nhé mua đi ........................................
-                                            </p>
-                                        </div>
+                                        <p>{!! nl2br(e($product->user_manual)) !!}</p>
                                     </div>
                                 </div>
                             </div>
@@ -255,10 +187,13 @@
             <div class="row product__filter" id="MixItUpA8E115">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/client/img/product/product-1.jpg" style="background-image: url(&quot;img/product/product-1.jpg&quot;);">
+                        <div class="product__item__pic set-bg" data-setbg="/client/img/product/product-1.jpg"
+                            style="background-image: url(&quot;img/product/product-1.jpg&quot;);">
                             <span class="label">New</span>
                             <ul class="">
-                                <li><a href="#"><img src="img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg" alt="" style="height: 260px;"></a></li>
+                                <li><a href="#"><img
+                                            src="img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg"
+                                            alt="" style="height: 260px;"></a></li>
                             </ul>
                         </div>
                         <div class="product__item__text">
@@ -288,9 +223,12 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/client/img/product/product-2.jpg" style="background-image: url(&quot;img/product/product-2.jpg&quot;);">
+                        <div class="product__item__pic set-bg" data-setbg="/client/img/product/product-2.jpg"
+                            style="background-image: url(&quot;img/product/product-2.jpg&quot;);">
                             <ul class="">
-                                <li><a href="#"><img src="img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg" alt="" style="height: 260px;"></a></li>
+                                <li><a href="#"><img
+                                            src="img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg"
+                                            alt="" style="height: 260px;"></a></li>
                             </ul>
                         </div>
                         <div class="product__item__text">
@@ -320,10 +258,13 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                     <div class="product__item sale">
-                        <div class="product__item__pic set-bg" data-setbg="/client/img/product/product-3.jpg" style="background-image: url(&quot;img/product/product-3.jpg&quot;);">
+                        <div class="product__item__pic set-bg" data-setbg="/client/img/product/product-3.jpg"
+                            style="background-image: url(&quot;img/product/product-3.jpg&quot;);">
                             <span class="label">Sale</span>
                             <ul class="">
-                                <li><a href="#"><img src="img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg" alt="" style="height: 260px;"></a></li>
+                                <li><a href="#"><img
+                                            src="img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg"
+                                            alt="" style="height: 260px;"></a></li>
                             </ul>
                         </div>
                         <div class="product__item__text">
@@ -353,9 +294,12 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/client/img/product/product-4.jpg" style="background-image: url(&quot;img/product/product-4.jpg&quot;);">
+                        <div class="product__item__pic set-bg" data-setbg="/client/img/product/product-4.jpg"
+                            style="background-image: url(&quot;img/product/product-4.jpg&quot;);">
                             <ul class="">
-                                <li><a href="#"><img src="img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg" alt="" style="height: 260px;"></a></li>
+                                <li><a href="#"><img
+                                            src="img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg"
+                                            alt="" style="height: 260px;"></a></li>
                             </ul>
                         </div>
                         <div class="product__item__text">
@@ -385,9 +329,12 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/client/img/product/product-5.jpg" style="background-image: url(&quot;img/product/product-5.jpg&quot;);">
+                        <div class="product__item__pic set-bg" data-setbg="/client/img/product/product-5.jpg"
+                            style="background-image: url(&quot;img/product/product-5.jpg&quot;);">
                             <ul class="">
-                                <li><a href="#"><img src="img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg" alt="" style="height: 260px;"></a></li>
+                                <li><a href="#"><img
+                                            src="img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg"
+                                            alt="" style="height: 260px;"></a></li>
                             </ul>
                         </div>
                         <div class="product__item__text">
@@ -417,10 +364,13 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
                     <div class="product__item sale">
-                        <div class="product__item__pic set-bg" data-setbg="/client/img/product/product-6.jpg" style="background-image: url(&quot;img/product/product-6.jpg&quot;);">
+                        <div class="product__item__pic set-bg" data-setbg="/client/img/product/product-6.jpg"
+                            style="background-image: url(&quot;img/product/product-6.jpg&quot;);">
                             <span class="label">Sale</span>
                             <ul class="">
-                                <li><a href="#"><img src="img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg" alt="" style="height: 260px;"></a></li>
+                                <li><a href="#"><img
+                                            src="img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg"
+                                            alt="" style="height: 260px;"></a></li>
                             </ul>
                         </div>
                         <div class="product__item__text">
@@ -450,9 +400,12 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/client/img/product/product-7.jpg" style="background-image: url(&quot;img/product/product-7.jpg&quot;);">
+                        <div class="product__item__pic set-bg" data-setbg="/client/img/product/product-7.jpg"
+                            style="background-image: url(&quot;img/product/product-7.jpg&quot;);">
                             <ul class="">
-                                <li><a href="#"><img src="img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg" alt="" style="height: 260px;"></a></li>
+                                <li><a href="#"><img
+                                            src="img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg"
+                                            alt="" style="height: 260px;"></a></li>
                             </ul>
                         </div>
                         <div class="product__item__text">
@@ -482,9 +435,12 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/client/img/product/product-8.jpg" style="background-image: url(&quot;img/product/product-8.jpg&quot;);">
+                        <div class="product__item__pic set-bg" data-setbg="/client/img/product/product-8.jpg"
+                            style="background-image: url(&quot;img/product/product-8.jpg&quot;);">
                             <ul class="">
-                                <li><a href="#"><img src="img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg" alt="" style="height: 260px;"></a></li>
+                                <li><a href="#"><img
+                                            src="img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg"
+                                            alt="" style="height: 260px;"></a></li>
                             </ul>
                         </div>
                         <div class="product__item__text">
@@ -516,5 +472,4 @@
         </div>
     </section>
     <!-- Related Section End -->
-    
 @endsection
