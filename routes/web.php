@@ -22,14 +22,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[ProductController::class, 'index'])->name('home');
 Route::get('/admin',function(){
     return 'Day la admin';
-});
+})->middleware('is_admin');
 //home
 Route::get('about',[HomeController::class, 'about'])->name('about');
 Route::get('contact',[HomeController::class, 'contact'])->name('contact');
 Route::post('search', [ShopController::class, 'search'])->name('search');
 
 
-// // Auth::routes();
+Auth::routes();
 // Route::get('auth/login',    [LoginController::class,'showFormLogin'])->name('login');
 // Route::post('auth/login',   [LoginController::class,'login']);
 

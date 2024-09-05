@@ -43,7 +43,7 @@ class CartController extends Controller
             session()->put('cart.' . $productVariant->id, $data);
         }else{
             $data = session('cart')[$productVariant->id];
-            $data['quantity'] = request('quantity'); 
+            $data['quantity'] += request('quantity'); 
 
             session()->put('cart.' . $productVariant->id, $data);
         }
