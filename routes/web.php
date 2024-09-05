@@ -5,6 +5,7 @@ use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ProductController;
 use App\Http\Controllers\Client\ShopController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,5 +53,6 @@ Route::post('order/save', [OrderController::class, 'save'])->name('order.save');
 //shop
 Route::get('shop/{id?}',[ShopController::class, 'shop'])->name('shop');
 Route::post('filter',[ShopController::class, 'filter'])->name('filter');
+
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
