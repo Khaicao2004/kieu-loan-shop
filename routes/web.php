@@ -18,10 +18,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[ProductController::class, 'index'])->name('index');
-Route::get('/admin',function(){
-    return 'Day la admin';
-});
+Route::get('/',[ProductController::class, 'index'])->name('home');
+// Route::get('/admin',function(){
+//     return 'Day la admin';
+// });
 //home
 Route::get('about',[HomeController::class, 'about'])->name('about');
 
@@ -50,3 +50,6 @@ Route::post('order/save', [OrderController::class, 'save'])->name('order.save');
 //shop
 Route::get('shop/{id?}',[ShopController::class, 'shop'])->name('shop');
 Route::post('filter',[ShopController::class, 'filter'])->name('filter');
+Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
