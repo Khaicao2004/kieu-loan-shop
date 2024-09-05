@@ -70,7 +70,7 @@
                                         <div class="product__details__cart__option">
                                             <div class="quantity">
                                                 <div class="pro-qty">
-                                                    <input type="number" name="quantity" min="1" value="1">
+                                                    <input type="text" name="quantity" id="quantity" value="1">
                                                 </div>
                                             </div>
                                             <button type="submit" class="primary-btn mt-3">add to cart</button>
