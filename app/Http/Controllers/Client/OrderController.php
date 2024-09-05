@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Log;
 class OrderController extends Controller
 {
     public function showCheckout(){
-        $cart = session('cart');
+        if((session('cart'))){
+            $cart = session('cart');
+        }else{
+            $cart = [];
+        }
         $totalAmount = 0;
        foreach ($cart as  $item) {
             $totalAmount += $item['quantity'] * ($item['price_sale'] ?: $item['price_regular']);
