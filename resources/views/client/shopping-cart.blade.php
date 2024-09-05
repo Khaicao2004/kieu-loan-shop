@@ -13,101 +13,61 @@
                 <div class="shopping__cart__table">
                     <table>
                         <thead>
+                            @if (session()->has('cart'))
                             <tr>
                                 <th>Sản phẩm</th>
                                 <th>Số lượng</th>
                                 <th>Thành tiền</th>
                                 <th></th>
-                            </tr>
+                            </tr>      
+                            @else
+                                
+                            @endif
                         </thead>
                         <tbody>
+                            @if (session()->has('cart'))
+                            @foreach (session('cart') as $item)
                             <tr>
                                 <td class="product__cart__item">
                                     <div class="product__cart__item__pic">
-                                        <img src="/client/img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg" alt="" style="width: 90px;">
+                                        <img src="{{ Storage::url($item['img_thumbnail']) }}" width="80px" height="80px">
                                     </div>
                                     <div class="product__cart__item__text">
-                                        <h6>T-shirt Contrast Pocket</h6>
-                                        <h5>300.000 VNĐ</h5>
+                                        <h6>{{$item['name']}}</h6>
+                                        @if ($item['price_sale'])
+                                        <h5>
+                                            {{ $item['price_sale'] }}đ
+                                        </h5>          
+                                        @else
+                                        <h5>
+                                            {{ $item['price_regular'] }} đ
+                                        </h5> 
+                                        @endif
+                                        <span><b>Color:</b> {{ $item['color']['name'] }}</span><br>
+                                        <span><b>Size:</b> {{ $item['size']['name'] }}</span>
                                     </div>
                                 </td>
                                 <td class="quantity__item">
                                     <div class="quantity">
                                         <div class="pro-qty-2">
-                                            <input type="text" value="1">
+                                            <input type="text" value="{{ $item['quantity'] }}">
                                         </div>
                                     </div>
                                 </td>
-                                <td class="cart__price">300.000 VNĐ</td>
+                                <td class="cart__price">{{ $item['quantity'] * ($item['price_sale'] ?: $item['price_regular']) }} đ</td>
                                 <td class="cart__close"><i class="fa fa-close"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="product__cart__item">
-                                    <div class="product__cart__item__pic">
-                                        <img src="/client/img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg" alt="" style="width: 90px;">
-                                    </div>
-                                    <div class="product__cart__item__text">
-                                        <h6>Diagonal Textured Cap</h6>
-                                        <h5>300.000 VNĐ</h5>
-                                    </div>
-                                </td>
-                                <td class="quantity__item">
-                                    <div class="quantity">
-                                        <div class="pro-qty-2">
-                                            <input type="text" value="1">
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="cart__price">300.000 VNĐ</td>
-                                <td class="cart__close"><i class="fa fa-close"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="product__cart__item">
-                                    <div class="product__cart__item__pic">
-                                        <img src="/client/img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg" alt="" style="width: 90px;">
-                                    </div>
-                                    <div class="product__cart__item__text">
-                                        <h6>Basic Flowing Scarf</h6>
-                                        <h5>300.000 VNĐ</h5>
-                                    </div>
-                                </td>
-                                <td class="quantity__item">
-                                    <div class="quantity">
-                                        <div class="pro-qty-2">
-                                            <input type="text" value="1">
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="cart__price">300.000 VNĐ</td>
-                                <td class="cart__close"><i class="fa fa-close"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="product__cart__item">
-                                    <div class="product__cart__item__pic">
-                                        <img src="/client/img/chulam/455971439_1177735816796946_4225547553999920568_n.jpg" alt="" style="width: 90px;">
-                                    </div>
-                                    <div class="product__cart__item__text">
-                                        <h6>Basic Flowing Scarf</h6>
-                                        <h5>300.000 VNĐ</h5>
-                                    </div>
-                                </td>
-                                <td class="quantity__item">
-                                    <div class="quantity">
-                                        <div class="pro-qty-2">
-                                            <input type="text" value="1">
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="cart__price">300.000 VNĐ</td>
-                                <td class="cart__close"><i class="fa fa-close"></i></td>
-                            </tr>
+                            </tr>                        
+                            @endforeach
+                            @else   
+                                <h5>Không có sản phẩm nào trong giỏ hàng.</h5>
+                            @endif
                         </tbody>
                     </table>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="continue__btn">
-                            <a href="#">Tiếp tục mua hàng</a>
+                            <a href="{{ route('index') }}">Tiếp tục mua hàng</a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
@@ -118,10 +78,9 @@
                 <div class="cart__total">
                     <h6>Tổng giỏ hàng</h6>
                     <ul>
-                        <li>Subtotal <span>1.600.000 VNĐ</span></li>
-                        <li>Tổng tiền <span>1.600.000 VNĐ</span></li>
+                        <li>Tổng tiền <span>{{ number_format($totalAmount) }} đ </span></li>
                     </ul>
-                    <a href="#" class="primary-btn">Tiến hành thanh toán</a>
+                    <a href="{{ route('checkout') }}" class="primary-btn">Tiến hành thanh toán</a>
                 </div>
             </div>
         </div>

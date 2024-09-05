@@ -83,30 +83,32 @@
                                         <span> {{ number_format($product->price_regular, 0, ',', '.') }}đ</span>
                                     </h3>
                                     <p>{{ $product->description }}</p>
-                                    <div class="product__details__option">
-                                        <div class="product__details__option__size">
-                                            <span>Size:</span>
-                                            @foreach ($sizes as $id => $name)
-                                            <label for="xxl">{{$name}}
-                                                <input type="radio" name="product_size_id" value="{{$id}}">
-                                            </label>
-                                                
-                                            @endforeach
-                                        </div>
-                                        <div class="product__details__option__color mt-3">
-                                            @foreach ($colors as $id => $name)         
-                                            <span>Color: <input type="radio" name="product_color_id" value="{{$id}}">{{$name}}</span>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                    <div class="product__details__cart__option">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
+                                    <form action="{{ route('cart.add') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                        <div class="product__details__option">
+                                            <div class="product__details__option__size">
+                                                @foreach ($sizes as $id => $name)
+                                                    <span>Size: <input type="radio" name="product_size_id"
+                                                            value="{{ $id }}">{{ $name }}</span>
+                                                @endforeach
+                                            </div>
+                                            <div class="product__details__option__color mt-3">
+                                                @foreach ($colors as $id => $name)
+                                                    <span>Color: <input type="radio" name="product_color_id"
+                                                            value="{{ $id }}">{{ $name }}</span>
+                                                @endforeach
                                             </div>
                                         </div>
-                                        <a href="#" class="primary-btn mt-3">add to cart</a>
-                                    </div>
+                                        <div class="product__details__cart__option">
+                                            <div class="quantity">
+                                                <div class="pro-qty">
+                                                    <input type="number" name="quantity" min="1" value="1">
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="primary-btn mt-3">add to cart</button>
+                                        </div>
+                                    </form>
                                     <div class="product__details__last__option">
                                         <ul>
                                             <li><span>SKU:</span> {{ $product->sku }}</li>

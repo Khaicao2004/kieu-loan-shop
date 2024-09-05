@@ -24,7 +24,7 @@ Route::get('/',[ProductController::class, 'index'])->name('home');
 // });
 //home
 Route::get('about',[HomeController::class, 'about'])->name('about');
-
+Route::post('search', [ShopController::class, 'search'])->name('search');
 
 
 // // Auth::routes();
@@ -45,6 +45,7 @@ Route::get('product/{slug}', [ProductController::class, 'detail'])->name('produc
 
 Route::get('cart/list', [CartController::class, 'list'])->name('cart.list');
 Route::post('cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::get('check-out', [OrderController::class , 'showCheckout'])->name('checkout');
 Route::post('order/save', [OrderController::class, 'save'])->name('order.save');
 
 //shop

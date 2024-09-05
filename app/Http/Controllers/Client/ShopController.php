@@ -56,9 +56,23 @@ class ShopController extends Controller
         $products = $query->paginate(9);
         // ->paginate(9);
         // dd($products->toArray());
-        $catagories = Catalogue::query()->withCount('products')->get();
+        $catalogues = Catalogue::query()->withCount('products')->get();
         $colors = ProductColor::query()->withCount('variants')->get();
         $sizes = ProductSize::query()->withCount('variants')->get();
-        return view('client.shop', compact('catagories', 'products', 'colors', 'sizes'));
+        $tags = Tag::query()->pluck('name','id');
+        return view('client.shop', compact('catalogues', 'products', 'colors', 'sizes','tags'));
+    }
+    public function search(Request $request){
+        // dd($request->all());
+        $catalogues = Catalogue::query()->withCount('products')->get();
+        $colors = ProductColor::query()->withCount('variants')->get();
+        $sizes = ProductSize::query()->withCount('variants')->get();
+        $keyWord = $request->input('name');
+        // dd($keyWord);    
+        $products = Product::where('name', 'LIKE', "%$keyWord%")->get();
+        $tags = Tag::query()->pluck('name','id');
+
+        // dd($products);
+        return view('client.shop', compact('catalogues', 'products', 'colors', 'sizes','tags'));
     }
 }

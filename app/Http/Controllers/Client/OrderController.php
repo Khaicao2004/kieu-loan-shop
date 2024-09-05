@@ -9,9 +9,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
+    public function showCheckout(){
+        $cart = session('cart');
+        $totalAmount = 0;
+       foreach ($cart as  $item) {
+            $totalAmount += $item['quantity'] * ($item['price_sale'] ?: $item['price_regular']);
+       }
+        return view('client.checkout', compact('totalAmount'));
+    }
     public function save()
     {
         try {
@@ -49,6 +58,7 @@ class OrderController extends Controller
                     'user_email' => $user->email,
                     'user_phone' => request('user_phone'),
                     'user_address' => request('user_address'),
+                    'user_note' => request('user_note'),
                     'total_price' =>  $totalAmount,
                 ]);
 
@@ -63,6 +73,8 @@ class OrderController extends Controller
 
             return redirect()->route('index')->with('success', 'Đặt hàngthành công');
         } catch (\Exception $exception) {
+            DB::rollBack();
+            Log::error('Lỗi đặt hàng' . $exception->getMessage());
             return back()->with('error', 'Lỗi đặt hàng');
         }
     }
