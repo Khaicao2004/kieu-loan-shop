@@ -10,15 +10,20 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 {
     public function list(){
-        $cart = session('cart');
+        if((session('cart'))){
+            $cart = session('cart');
+        }else{
+            $cart = [];
+        }
         // dd($cart);
         $totalAmount = 0;
        foreach ($cart as  $item) {
             $totalAmount += $item['quantity'] * ($item['price_sale'] ?: $item['price_regular']);
        }
-       return view('client.cart-list',compact('totalAmount'));
+       return view('client.shopping-cart',compact('totalAmount'));
     }
     public function add(){
+        // dd(request()->all());
         $product = Product::query()->findOrFail(request('product_id'));
         $productVariant = ProductVariant::query()
         ->with(['color','size'])
