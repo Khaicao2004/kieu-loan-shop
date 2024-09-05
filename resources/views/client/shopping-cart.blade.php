@@ -67,7 +67,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="continue__btn">
-                            <a href="{{ route('index') }}">Tiếp tục mua hàng</a>
+                            <a href="{{ route('home') }}">Tiếp tục mua hàng</a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">

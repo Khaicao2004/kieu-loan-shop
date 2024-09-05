@@ -33,10 +33,6 @@
                             @endphp
                             <div class="product__item__pic set-bg" data-setbg="{{ $url }}">
                                 <span class="label">New</span>
-                                <ul class="">
-                                    <li><a href="#"><img src="{{ $url }}" alt=""
-                                                style="height: 260px;"></a></li>
-                                </ul>
                             </div>
                             <div class="product__item__text">
                                 <h6>{{ $new->name }}</h6>
@@ -65,11 +61,6 @@
                             @endphp
                             <div class="product__item__pic set-bg" data-setbg="{{ $url }}">
                                 <span class="label">Sale</span>
-                                <ul class="">
-                                    <li><a href="#"><img
-                                                src="{{ $url }}"
-                                                alt="" style="height: 260px;"></a></li>
-                                </ul>
                             </div>
                             <div class="product__item__text">
                                 <h6>{{ $sale->name }}</h6>

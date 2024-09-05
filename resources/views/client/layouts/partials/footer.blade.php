@@ -16,12 +16,11 @@
             <div class="footer__widget">
                 <h6>Hỗ trợ khách hàng</h6>
                 <ul>
-                    <li><a href="#">Trang chủ</a></li>
-                    <li><a href="#">Giới thiệu</a></li>
-                    <li><a href="#">Sản phẩm</a></li>
-                    <li><a href="#">Khuyến mãi Hot</a></li>
+                    <li><a href="{{ route('home') }}">Trang chủ</a></li>
+                    <li><a href="{{ route('about') }}">Giới thiệu</a></li>
+                    <li><a href="{{ route('shop') }}">Sản phẩm</a></li>
                     <li><a href="#">Tin tức</a></li>
-                    <li><a href="#">Liên hệ</a></li>
+                    <li><a href="{{ route('contact') }}">Liên hệ</a></li>
                 </ul>
             </div>
         </div>
@@ -29,7 +28,7 @@
             <div class="footer__widget">
                 <h6>Chính sách</h6>
                 <ul>
-                    <li><a href="#">Liên hệ với chúng tôi</a></li>
+                    <li><a href="{{ route('contact') }}">Liên hệ với chúng tôi</a></li>
                     <li><a href="#">Chuyển khoản dễ dàng</a></li>
                     <li><a href="#">Hỗ trợ đổi trả</a></li>
                 </ul>

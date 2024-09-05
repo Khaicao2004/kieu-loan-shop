@@ -7,6 +7,7 @@ use App\Models\ProductColor;
 use App\Models\ProductSize;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\ProductGallery;
 
 class ProductController extends Controller
 {
@@ -21,9 +22,10 @@ class ProductController extends Controller
         $product = Product::query()->with('variants')->where('slug', $slug)->first();
         $colors = ProductColor::query()->pluck('name', 'id')->all();
         $sizes = ProductSize::query()->pluck('name', 'id')->all();
-        // dd($product);
+        $galleries = ProductGallery::query()->where('product_id', $product->id)->pluck('image','id');
+        // dd($galleries);
 
-        return view('client.shop-details', compact('product','colors','sizes'));
+        return view('client.shop-details', compact('product','colors','sizes','galleries'));
 
     } 
 }
