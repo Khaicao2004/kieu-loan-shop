@@ -35,7 +35,7 @@
                 <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('admin.dashboard') }}">
-                        <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Dashboards</span>
+                        <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Thống kê</span>
                     </a>
                 </li> <!-- end Dashboard Menu -->
 
@@ -136,6 +136,23 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('admin.users.create') }}" class="nav-link">Thêm mới</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                   <li class="nav-item">
+                    <a class="nav-link menu-link" href="#Tag" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="Tag">
+                        <i class="bx bx-font-size"></i>
+                        <span data-key="t-layouts">Tag</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="Tag">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.tags.index') }}" class="nav-link">Danh sách</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.tags.create') }}" class="nav-link">Thêm mới</a>
                             </li>
                         </ul>
                     </div>

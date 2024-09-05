@@ -52,3 +52,6 @@ Route::post('order/save', [OrderController::class, 'save'])->name('order.save');
 //shop
 Route::get('shop/{id?}',[ShopController::class, 'shop'])->name('shop');
 Route::post('filter',[ShopController::class, 'filter'])->name('filter');
+Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
