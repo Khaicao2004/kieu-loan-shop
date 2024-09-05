@@ -47,12 +47,12 @@
                <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>Cover</th>
-                    <th>Is_active</th>
-                    <th>Created at</th>
-                    <th>Updated at</th>
-                    <th>Action</th>
+                    <th>Tên danh mục</th>
+                    <th>Ảnh</th>
+                    <th>Hoạt động</th>
+                    <th>Ngày tạo</th>
+                    <th>Ngày cập nhật</th>
+                    <th>Hành động</th>
                 </tr>
                </thead>
                 
@@ -110,8 +110,92 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 
 <script>
-     new DataTable("#example",{
-     order: [ [0, 'desc'] ]
-});
+    $(document).ready(function() {
+        var table = $('#example').DataTable({
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'copy',
+                    exportOptions: {
+                        columns: function(idx, data, node) {
+                            return idx !== 9;
+                        }
+                    }
+                },
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: function(idx, data, node) {
+                            return idx !== 9;
+                        }
+                    }
+                },
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: function(idx, data, node) {
+                            return idx !== 9;
+                        }
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: function(idx, data, node) {
+                            return idx !== 9;
+                        }
+                    }
+                },
+                {
+                    text: 'PNG',
+                    action: function(e, dt, node, config) {
+                        html2canvas(document.querySelector('#example')).then(canvas => {
+                            var link = document.createElement('a');
+                            link.href = canvas.toDataURL('image/png');
+                            link.download = 'table-image.png';
+                            link.click();
+                        });
+                    }
+                },
+                'print'
+            ],
+            order: [
+                [0, 'desc']
+            ]
+        });
+
+        // Xóa các bộ lọc cũ và áp dụng bộ lọc mới
+        $.fn.dataTable.ext.search.push(
+            function(settings, data, dataIndex) {
+                var minDate = $('#minDate').val();
+                var maxDate = $('#maxDate').val();
+
+                // Convert to Date objects for comparison
+                var minDateObj = minDate ? new Date(minDate + 'T00:00:00') : null;
+                var maxDateObj = maxDate ? new Date(maxDate + 'T23:59:59') : null;
+
+                var createdAt = data[5] || ''; // Cột thời gian tạo
+                var createdAtDate = new Date(createdAt);
+
+                if (
+                    (minDateObj === null && maxDateObj === null) ||
+                    (minDateObj === null && createdAtDate <= maxDateObj) ||
+                    (minDateObj <= createdAtDate && maxDateObj === null) ||
+                    (minDateObj <= createdAtDate && createdAtDate <= maxDateObj)
+                ) {
+                    return true;
+                }
+                return false;
+            }
+        );
+
+        $('#minDate, #maxDate').on('change', function() {
+            table.draw();
+        });
+
+        // Tạo filter tìm kiếm văn bản
+        $('#searchText').on('keyup', function() {
+            table.search(this.value).draw();
+        });
+    });
 </script>
 @endsection

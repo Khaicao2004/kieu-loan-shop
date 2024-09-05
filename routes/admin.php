@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ProductColorController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductSizeController;
 use App\Http\Controllers\Admin\RevenueController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')
 ->as('admin.')
+->middleware(['auth', 'is_admin'])
 ->group(function () {
     Route::get('/', function (){
         return view('admin.dashboard');
@@ -29,6 +31,7 @@ Route::prefix('admin')
             Route::get('{id}/destroy',   [CatalogueController::class, 'destroy'])->name('destroy');
 
         });
+    Route::resource('tags', TagController::class);
     Route::resource('products',ProductController::class);
     Route::resource('productcolors',ProductColorController::class);
     Route::resource('productsizes',ProductSizeController::class);

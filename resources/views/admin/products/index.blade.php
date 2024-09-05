@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    Danh sách danh mục sản phẩm
+    Danh sách sản phẩm
 @endsection
 
 @section('content')
@@ -25,6 +25,7 @@
         </div>
     </div>
     <!-- end page title -->
+
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -40,25 +41,20 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Img thumbnail</th>
+                                <th>Img Thumbnail</th>
                                 <th>Name</th>
-                                <th>Sku</th>
-                                <th>Catelogues</th>
+                                <th>SKU</th>
+                                <th>Catalogue</th>
                                 <th>Price Regular</th>
                                 <th>Price Sale</th>
                                 <th>Views</th>
-                                <th>Is Active</th>
-                                <th>Is Hot Deal</th>
-                                <th>Is Good Deal</th>
-                                <th>Is New</th>
-                                <th>Is Show Home</th>
-                                <th>Tags</th>
+                                <th>Trạng thái</th>
+                                <th>Tag</th>
                                 <th>Created at</th>
                                 <th>Updated at</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
-
                         <tbody>
                             @foreach ($data as $item)
                                 <tr>
@@ -70,24 +66,38 @@
                                                 $url = Storage::url($url);
                                             }
                                         @endphp
-
                                         <img src="{{ $url }}" alt="" width="100px">
                                     </td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->sku }}</td>
+
                                     <td>{{ $item->catalogue->name }}</td>
+
                                     <td>{{ $item->price_regular }}</td>
                                     <td>{{ $item->price_sale }}</td>
                                     <td>{{ $item->views }}</td>
-                                    <td>{!! $item->is_active ? '<span class="badge bg-primary">YES</span>' : '<span class="badge bg-danger">NO</span>' !!}</td>
-                                    <td>{!! $item->is_hot_deal ? '<span class="badge bg-primary">YES</span>' : '<span class="badge bg-danger">NO</span>' !!}</td>
-                                    <td>{!! $item->is_good_deal
-                                        ? '<span class="badge bg-primary">YES</span>'
-                                        : '<span class="badge bg-danger">NO</span>' !!}</td>
-                                    <td>{!! $item->is_new ? '<span class="badge bg-primary">YES</span>' : '<span class="badge bg-danger">NO</span>' !!}</td>
-                                    <td>{!! $item->is_show_home
-                                        ? '<span class="badge bg-primary">YES</span>'
-                                        : '<span class="badge bg-danger">NO</span>' !!}</td>
+                                    <td>
+                                        <div class="d-flex justify-content-between mb-3" style="width: 130px">
+                                            <p>Is Active</p>
+                                            {!! $item->is_active ? '<span class="badge bg-primary">YES</span>' : '<span class="badge bg-danger">No</span>' !!}
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-3" style="width: 130px">
+                                            <p>Is Hot Deal</p>
+                                            {!! $item->is_hot_deal ? '<span class="badge bg-primary">YES</span>' : '<span class="badge bg-danger">No</span>' !!}
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-3" style="width: 130px">
+                                            <p>Is Good Deal</p>
+                                            {!! $item->is_good_deal ? '<span class="badge bg-primary">YES</span>' : '<span class="badge bg-danger">No</span>' !!}
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-3" style="width: 130px">
+                                            <p>Is New</p>
+                                            {!! $item->is_new ? '<span class="badge bg-primary">YES</span>' : '<span class="badge bg-danger">No</span>' !!}
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-3" style="width: 130px">
+                                            <p>Is Show Home</p>
+                                            {!! $item->is_show_home ? '<span class="badge bg-primary">YES</span>' : '<span class="badge bg-danger">No</span>' !!}
+                                        </div>
+                                    </td>
                                     <td>
                                         @foreach ($item->tags as $tag)
                                             <span class="badge bg-info">{{ $tag->name }}</span>
@@ -96,15 +106,15 @@
                                     <td>{{ $item->created_at }}</td>
                                     <td>{{ $item->updated_at }}</td>
                                     <td>
-                                        <div class="d-flex mt-2">
-                                            <a href="{{ route('admin.products.show', $item->sku) }}"
-                                                class="btn btn-primary mb-3 me-2">Xem</a>
-                                            <a href="{{ route('admin.products.edit', $item->sku) }}"
-                                                class="btn btn-warning mb-3 me-2">Sửa</a>
+                                        <div class="d-flex">
+                                            <a href="{{ route('admin.products.show', $item) }}"
+                                                class="btn btn-info mb-3">Xem</a>
+                                            <a href="{{ route('admin.products.edit', $item) }}"
+                                                class="btn btn-warning mb-3 ms-3 me-3">Sửa</a>
                                             <form action="{{ route('admin.products.destroy', $item) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" onclick="return confirm('Chắc chắn không')"
+                                                <button onclick="return confirm('Chắc chắn không?')" type="submit"
                                                     class="btn btn-danger">Xóa</button>
                                             </form>
                                         </div>
@@ -118,7 +128,6 @@
         </div>
         <!--end col-->
     </div>
-    <!--end row--><!-- phan trang -->
 @endsection
 
 @section('style-libs')
@@ -127,7 +136,7 @@
     <!--datatable responsive css-->
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css" />
 
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css" />
 @endsection
 
 @section('script-libs')
