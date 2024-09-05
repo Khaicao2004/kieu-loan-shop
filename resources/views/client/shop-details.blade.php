@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-lg-2 col-md-3">
                         <ul class="nav nav-tabs" role="tablist">
-                            @foreach ($galleries as $id =>  $image)  
+                            @foreach ($galleries as $id => $image)  
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">
                                     <div class="product__thumb__pic set-bg"
