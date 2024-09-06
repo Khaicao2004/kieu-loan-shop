@@ -55,15 +55,17 @@
                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                                         <div class="product__details__option">
                                             <div class="product__details__option__size">
+                                                <span>Size:</span>
                                                 @foreach ($sizes as $id => $name)
-                                                    <span>Size: <input type="radio" class="mx-2" name="product_size_id"
-                                                            value="{{ $id }}">{{ $name }}</span>
+                                                    <input type="radio" class="mx-2" name="product_size_id"
+                                                        value="{{ $id }}">{{ $name }}
                                                 @endforeach
                                             </div>
-                                            <div class="product__details__option__color mt-3">
+                                            <div class="product__details__option__size">
+                                                <span>Color:</span>
                                                 @foreach ($colors as $id => $name)
-                                                    <span>Color: <input type="radio" class="mx-2" name="product_color_id"
-                                                            value="{{ $id }}">{{ $name }}</span>
+                                                    <input type="radio" class="mx-2" name="product_color_id"
+                                                        value="{{ $id }}">{{ $name }}
                                                 @endforeach
                                             </div>
                                         </div>
@@ -163,10 +165,10 @@
                     @endphp
                     <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                         <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="{{$url}}"
+                            <div class="product__item__pic set-bg" data-setbg="{{ $url }}"
                                 style="background-image: url(&quot;img/product/product-1.jpg&quot;);">
                                 @if ($item->is_new == true)
-                                <span class="label">New</span>             
+                                    <span class="label">New</span>
                                 @endif
                             </div>
                             <div class="product__item__text">
@@ -181,7 +183,7 @@
                                         {{ number_format($item->price_regular, 0, ',', '.') }}đ
                                     </h5>
                                 @endif
-                               
+
                             </div>
                         </div>
                     </div>
