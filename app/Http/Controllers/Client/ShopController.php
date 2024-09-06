@@ -14,20 +14,30 @@ use App\Models\Tag;
 
 class ShopController extends Controller
 {
-    public function shop(string $id = null)
+    public function shop(string $id = null, string $tagId = null)
     {
 
+        // Bắt đầu với query mặc định
+        $productsQuery = Product::query();
+        // Lọc theo danh mục (nếu có)
         if ($id) {
-            $products = Product::where('catalogue_id', $id)->latest('id')->paginate(9);
-        } else {
-            $products = Product::query()->latest('id')->paginate(9);
+            $productsQuery->where('catalogue_id', $id);
         }
+
+        // Lọc theo tag (nếu có)
+        if ($tagId) {
+            $productsQuery->whereHas('tags', function ($query) use ($tagId) {
+                $query->where('tags.id', $tagId);
+            });
+        }
+        // Lấy danh sách sản phẩm và phân trang
+        $products = $productsQuery->latest('id')->paginate(9);
         $catalogues = Catalogue::query()->withCount('products')->get();
         $colors = ProductColor::query()->withCount('variants')->get();
         $sizes = ProductSize::query()->withCount('variants')->get();
-        $tags = Tag::query()->pluck('name','id');
+        $tags = Tag::query()->pluck('name', 'id');
         // dd($colors->toArray());
-        return view('client.shop', compact('catalogues', 'products', 'colors', 'sizes','tags'));
+        return view('client.shop', compact('catalogues', 'products', 'colors', 'sizes', 'tags'));
     }
     public function filter(Request $request)
     {
@@ -59,10 +69,11 @@ class ShopController extends Controller
         $catalogues = Catalogue::query()->withCount('products')->get();
         $colors = ProductColor::query()->withCount('variants')->get();
         $sizes = ProductSize::query()->withCount('variants')->get();
-        $tags = Tag::query()->pluck('name','id');
-        return view('client.shop', compact('catalogues', 'products', 'colors', 'sizes','tags'));
+        $tags = Tag::query()->pluck('name', 'id');
+        return view('client.shop', compact('catalogues', 'products', 'colors', 'sizes', 'tags'));
     }
-    public function search(Request $request){
+    public function search(Request $request)
+    {
         // dd($request->all());
         $catalogues = Catalogue::query()->withCount('products')->get();
         $colors = ProductColor::query()->withCount('variants')->get();
@@ -70,9 +81,9 @@ class ShopController extends Controller
         $keyWord = $request->input('name');
         // dd($keyWord);    
         $products = Product::where('name', 'LIKE', "%$keyWord%")->get();
-        $tags = Tag::query()->pluck('name','id');
+        $tags = Tag::query()->pluck('name', 'id');
 
         // dd($products);
-        return view('client.shop', compact('catalogues', 'products', 'colors', 'sizes','tags'));
+        return view('client.shop', compact('catalogues', 'products', 'colors', 'sizes', 'tags'));
     }
 }
