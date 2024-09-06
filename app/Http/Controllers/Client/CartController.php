@@ -9,45 +9,52 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function list(){
-        if((session('cart'))){
+    public function list()
+    {
+        if ((session('cart'))) {
             $cart = session('cart');
-        }else{
+        } else {
             $cart = [];
         }
         // dd($cart);
         $totalAmount = 0;
-       foreach ($cart as  $item) {
+        foreach ($cart as  $item) {
             $totalAmount += $item['quantity'] * ($item['price_sale'] ?: $item['price_regular']);
-       }
-       return view('client.shopping-cart',compact('totalAmount'));
+        }
+        return view('client.shopping-cart', compact('totalAmount'));
     }
-    public function add(){
+    public function add()
+    {
         // dd(request()->all());
         $product = Product::query()->findOrFail(request('product_id'));
         $productVariant = ProductVariant::query()
-        ->with(['color','size'])
-        ->where([
-            'product_id' => request('product_id'),
-            'product_color_id' => request('product_color_id'),
-            'product_size_id' => request('product_size_id'),
-        ])
-        ->firstOrFail();
+            ->with(['color', 'size'])
+            ->where([
+                'product_id' => request('product_id'),
+                'product_color_id' => request('product_color_id'),
+                'product_size_id' => request('product_size_id'),
+            ])
+            ->firstOrFail();
         // dd($productVariant->id);
-        
-        if(!isset(session('cart')[$productVariant->id])){
+
+        if (!isset(session('cart')[$productVariant->id])) {
             $data = $product->toArray()
-            + $productVariant->toArray()
-            + ['quantity' => request('quantity')];
+                + $productVariant->toArray();
+
+            // Đặt quantity từ request vào sau khi đã merge dữ liệu
+            $data['quantity'] = request('quantity');
 
             session()->put('cart.' . $productVariant->id, $data);
-        }else{
+        } else {
             $data = session('cart')[$productVariant->id];
-            $data['quantity'] += request('quantity'); 
+
+            // Cập nhật quantity từ request
+            $data['quantity'] += request('quantity');
 
             session()->put('cart.' . $productVariant->id, $data);
         }
-       
+
+
         return redirect()->route('cart.list');
     }
 }

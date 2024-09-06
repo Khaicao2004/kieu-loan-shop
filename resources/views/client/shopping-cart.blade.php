@@ -50,11 +50,11 @@
                                 <td class="quantity__item">
                                     <div class="quantity">
                                         <div class="pro-qty-2">
-                                            <input type="text" value="{{ $item['quantity'] }}">
+                                            <input type="number" value="{{ $item['quantity'] }}">
                                         </div>
                                     </div>
                                 </td>
-                                <td class="cart__price">{{ $item['quantity'] * ($item['price_sale'] ?: $item['price_regular']) }} đ</td>
+                                <td class="cart__price">{{ number_format($item['quantity'] * ($item['price_sale'] ?: $item['price_regular']) ) }} đ</td>
                                 <td class="cart__close"><i class="fa fa-close"></i></td>
                             </tr>                        
                             @endforeach
