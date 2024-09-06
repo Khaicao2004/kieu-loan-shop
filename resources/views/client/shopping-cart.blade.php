@@ -50,7 +50,7 @@
                                 <td class="quantity__item">
                                     <div class="quantity">
                                         <div class="pro-qty-2">
-                                            <input type="number" value="{{ $item['quantity'] }}">
+                                            <input type="text" value="{{ $item['quantity'] }}">
                                         </div>
                                     </div>
                                 </td>
