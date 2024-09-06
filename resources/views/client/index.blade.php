@@ -15,9 +15,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <ul class="filter__controls">
-                        <li class="active" data-filter="*">Hot</li>
-                        <li data-filter=".new-arrivals">New</li>
-                        <li data-filter=".hot-sales">Hot Sales</li>
+                        <li class="active" data-filter="*">Bán chạy</li>
+                        <li data-filter=".new-arrivals">Sản phẩm mới</li>
+                        <li data-filter=".hot-sales">Sản phẩm Sale</li>
                     </ul>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                                         {{ number_format($sale->price_regular, 0, ',', '.') }}đ
                                     </h5>
                                 @endif
-                               
+
                             </div>
                         </div>
                     </div>
@@ -91,15 +91,21 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="categories__text">
-                        <h2>Mỹ phẩm <br /> <span>Phấn son</span> <br /> Hàng Ngoại</h2>
+                        <h2>{{ $hotDeal->catalogue->name }}</h2>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="categories__hot__deal">
-                        <img src="/client/img/chulam/image-removebg-preview.png" alt="">
+                        @php
+                            $url = $hotDeal->img_thumbnail;
+                            if (!Str::contains($url, 'http')) {
+                                $url = Storage::url($url);
+                            }
+                        @endphp
+                        <img src="{{$url}}" alt="">
                         <div class="hot__deal__sticker">
                             <span>Giảm</span>
-                            <h5>500.000 VNĐ</h5>
+                            <h5>{{ number_format($hotDeal->price_regular - $hotDeal->price_sale) }} VNĐ</h5>
                         </div>
                     </div>
                 </div>
@@ -125,7 +131,7 @@
                                 <p>Seconds</p>
                             </div>
                         </div>
-                        <a href="#" class="primary-btn">Mua ngay</a>
+                        <a href="{{ route('product.detail', $hotDeal->slug) }}" class="primary-btn">Mua ngay</a>
                     </div>
                 </div>
             </div>
