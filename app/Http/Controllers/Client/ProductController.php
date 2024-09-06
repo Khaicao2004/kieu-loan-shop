@@ -13,11 +13,13 @@ class ProductController extends Controller
 {
     public function index()
     {
+        $products = Product::where('is_active', true)->take(5)->get();
         $productNews = Product::where('is_new', true)->get();
-        $productSales = Product::where('is_hot_deal', true)->get();
-
+        $productSales = Product::where('is_active', true)
+        ->where('is_hot_deal', true)->get();
+        $hotDeal = Product::where('is_hot_deal', true)->first();
         // dd($productSales->toArray());
-        return view('client.index', compact('productNews', 'productSales'));
+        return view('client.index', compact('productNews', 'productSales','hotDeal','products'));
     }
     public function detail($slug)
     {
