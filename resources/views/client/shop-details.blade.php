@@ -56,13 +56,13 @@
                                         <div class="product__details__option">
                                             <div class="product__details__option__size">
                                                 @foreach ($sizes as $id => $name)
-                                                    <span>Size: <input type="radio" name="product_size_id"
+                                                    <span>Size: <input type="radio" class="mx-2" name="product_size_id"
                                                             value="{{ $id }}">{{ $name }}</span>
                                                 @endforeach
                                             </div>
                                             <div class="product__details__option__color mt-3">
                                                 @foreach ($colors as $id => $name)
-                                                    <span>Color: <input type="radio" name="product_color_id"
+                                                    <span>Color: <input type="radio" class="mx-2" name="product_color_id"
                                                             value="{{ $id }}">{{ $name }}</span>
                                                 @endforeach
                                             </div>
@@ -70,7 +70,7 @@
                                         <div class="product__details__cart__option">
                                             <div class="quantity">
                                                 <div class="pro-qty">
-                                                    <input type="text" name="quantity" id="quantity" value="1">
+                                                    <input type="number" name="quantity" id="quantity" value="1">
                                                 </div>
                                             </div>
                                             <button type="submit" class="primary-btn mt-3">add to cart</button>
