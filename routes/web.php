@@ -51,7 +51,7 @@ Route::get('check-out', [OrderController::class , 'showCheckout'])->name('checko
 Route::post('order/save', [OrderController::class, 'save'])->name('order.save');
 
 //shop
-Route::get('shop/{id?}',[ShopController::class, 'shop'])->name('shop');
+Route::get('shop/{id?}/{tagId?}',[ShopController::class, 'shop'])->name('shop');
 Route::post('filter',[ShopController::class, 'filter'])->name('filter');
 
 

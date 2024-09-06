@@ -43,37 +43,46 @@
                                     </div>
                                 </div>
                                 <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseFour">Size</a>
-                                    </div>
-                                    <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__size">
-                                                @foreach ($sizes as $size)
-                                                <label for="xs">{{$size->name}}
-                                                    <input type="radio" name="sizes[]" value="{{$size->id}}">
-                                                </label>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseFive">Colors</a>
+                                    <div class="card-heading mb-3">
+                                        <a data-toggle="collapse" data-target="#collapseFive">Sản phẩm</a>
                                     </div>
                                     <div id="collapseFive" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__color">
-                                                @foreach ($colors as $color)
-                                                <div class="d-flex color-item align-items-center">
-                                                    <input type="checkbox" id="s_sm" class="mr-2 mt-1" name="color[]" value="{{$color->id}}"/>
-                                                    <span class=" color d-inline-block rounded-circle mr-2" style="background: {{$color->name}}"></span>
-                                                    <span class="text-black">{{$color->name}}</span>
-                                                </div>                           
-                                                @endforeach
+                                        <form action="{{ route('filter') }}" method="POST">
+                                            @csrf
+                                            <div class="border p-4 rounded mb-4">
+                                                <div class="mb-4">
+                                                    <h3 class="mb-3 h6 text-uppercase text-black d-block">
+                                                        Size
+                                                    </h3>
+                                                    @foreach ($sizes as $size)
+                                                        <label for="s_sm" class="d-flex">
+                                                            <input type="checkbox" id="s_sm" class="mr-2 mt-1" name="size[]"
+                                                                value="{{ $size->id }}" />
+                                                            <span class="text-black">{{ $size->name }}</span>
+                                                        </label>
+                                                    @endforeach
+                                                </div>
+                    
+                                                <div class="mb-4">
+                                                    <h3 class="mb-3 h6 text-uppercase text-black d-block">
+                                                        Color
+                                                    </h3>
+                                                    @foreach ($colors as $color)
+                                                        <div class="d-flex color-item align-items-center">
+                                                            <input type="checkbox" id="s_sm" class="mr-2 mt-1" name="color[]"
+                                                                value="{{ $color->id }}" />
+                                                            <span class=" color d-inline-block rounded-circle mr-2"
+                                                                style="background: {{ $color->name }}"></span>
+                                                            <span class="text-black">{{ $color->name }}</span>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                                <div class="mt-3 mb-3">
+                                                    <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                                                </div>
                                             </div>
-                                        </div>
+                    
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="card">
@@ -84,7 +93,7 @@
                                         <div class="card-body">
                                             <div class="shop__sidebar__tags">
                                                 @foreach ($tags as $id => $name)
-                                                <a href="{{$id}}">{{$name}}</a>                                           
+                                                <a href="{{ route('shop', ['id' => $id ?? null, 'tagId' => $tagId ?? null]) }}">{{$name}}</a>                                           
                                                 @endforeach
                                             </div>
                                         </div>
