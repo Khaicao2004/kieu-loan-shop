@@ -37,10 +37,10 @@
         <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
             <div class="footer__widget">
                 <h6>Kết nối với chúng tôi</h6>
-                        <a class="mr-2"><i class="fa fa-facebook "></i></a>
-                        <a class="mr-2"><i class="fa fa-twitter "></i></a>
-                        <a class="mr-2"><i class="fa fa-pinterest "></i></a>
-                        <a class=""><i class="fa fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100063703743442" class="mr-2"><i class="fa fa-facebook" style="font-size: 40px"></i></a>
+                        <a class="mr-2"><i class="fa fa-twitter "  style="font-size: 40px"></i></a>
+                        <a class="mr-2"><i class="fa fa-pinterest "  style="font-size: 40px"></i></a>
+                        <a class=""><i class="fa fa-instagram"  style="font-size: 40px"></i></a>
             </div>
             <div class="footer__widget">
                 <h6>Phương thức thanh toán</h6>
