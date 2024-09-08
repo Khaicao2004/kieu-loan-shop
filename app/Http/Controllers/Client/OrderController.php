@@ -75,7 +75,7 @@ class OrderController extends Controller
 
             session()->forget('cart');
 
-            return redirect()->route('index')->with('success', 'Đặt hàngthành công');
+            return redirect()->route('home')->with('success', 'Đặt hàngthành công');
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error('Lỗi đặt hàng' . $exception->getMessage());
