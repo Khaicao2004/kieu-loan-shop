@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CatalogueController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductColorController;
@@ -37,4 +39,5 @@ Route::prefix('admin')
     Route::resource('productsizes',ProductSizeController::class);
     Route::resource('users',UserController::class);
     Route::resource('orders',OrderController::class);
+    Route::resource('blogs',BlogController::class);
 });

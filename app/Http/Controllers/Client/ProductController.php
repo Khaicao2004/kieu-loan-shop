@@ -7,6 +7,7 @@ use App\Models\ProductColor;
 use App\Models\ProductSize;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use App\Models\ProductGallery;
 
 class ProductController extends Controller
@@ -18,8 +19,9 @@ class ProductController extends Controller
         $productSales = Product::where('is_active', true)
         ->where('is_hot_deal', true)->get();
         $hotDeal = Product::where('is_hot_deal', true)->first();
+        $blogs = Blog::query()->orderByDesc('id')->paginate(3);
         // dd($productSales->toArray());
-        return view('client.index', compact('productNews', 'productSales','hotDeal','products'));
+        return view('client.index', compact('productNews', 'productSales','hotDeal','products','blogs'));
     }
     public function detail($slug)
     {

@@ -12,7 +12,7 @@
                     <li><a href="{{ route('shop') }}">Shop</a></li>
                     <li><a href="{{ route('about') }}">Giới thiệu</a></li>
                     <li><a href="{{ route('contact') }}">Liên hệ</a></li>
-
+                    <li><a href="{{ route('blog') }}">Tin tức</a></li>
                 </ul>
             </nav>
         </div>
