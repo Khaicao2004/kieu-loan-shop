@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Client\BlogController;
 use App\Http\Controllers\Client\OrderController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\HomeController;
@@ -27,7 +28,8 @@ Route::get('/admin',function(){
 Route::get('about',[HomeController::class, 'about'])->name('about');
 Route::get('contact',[HomeController::class, 'contact'])->name('contact');
 Route::post('search', [ShopController::class, 'search'])->name('search');
-
+Route::get('blog', [BlogController::class, 'blog'])->name('blog');
+Route::get('blog-details/{id}', [BlogController::class, 'blogDetail'])->name('blog.detail');
 
 Auth::routes();
 // Route::get('auth/login',    [LoginController::class,'showFormLogin'])->name('login');
