@@ -12,7 +12,7 @@
                     <li><a href="{{ route('shop') }}">Shop</a></li>
                     <li><a href="{{ route('about') }}">Giới thiệu</a></li>
                     <li><a href="{{ route('contact') }}">Liên hệ</a></li>
-                  
+
                 </ul>
             </nav>
         </div>
@@ -20,7 +20,6 @@
             <div class="header__nav__option">
                 <button class="search-switch btn btn-secondery"><img src="/client/img/icon/search.png"
                         alt=""></button>
-                <a href="#"><img src="/client/img/icon/heart.png" alt=""></a>
                 <a href="{{ route('cart.list') }}"><img src="/client/img/icon/cart.png" alt=""> <span>{{ count(session('cart', [])) }}</span></a>
             </div>
         </div>

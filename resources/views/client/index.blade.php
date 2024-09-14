@@ -139,40 +139,6 @@
     </section>
     <!-- Categories Section End -->
 
-    <!-- Instagram Section Begin -->
-    <section class="instagram spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="instagram__pic">
-                        <div class="instagram__pic__item set-bg"
-                            data-setbg="/client/img/chulam/456201733_7957600444359344_8380231337377447825_n.jpg"></div>
-                        <div class="instagram__pic__item set-bg"
-                            data-setbg="/client/img/chulam/454979098_1197335834939264_328595561756446557_n.jpg"></div>
-                        <div class="instagram__pic__item set-bg"
-                            data-setbg="/client/img/chulam/456201733_7957600444359344_8380231337377447825_n.jpg"></div>
-                        <div class="instagram__pic__item set-bg"
-                            data-setbg="/client/img/chulam/454979098_1197335834939264_328595561756446557_n.jpg"></div>
-                        <div class="instagram__pic__item set-bg"
-                            data-setbg="/client/img/chulam/456201733_7957600444359344_8380231337377447825_n.jpg"></div>
-                        <div class="instagram__pic__item set-bg"
-                            data-setbg="/client/img/chulam/454979098_1197335834939264_328595561756446557_n.jpg"></div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="instagram__text">
-                        <h2>Instagram</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua.</p>
-                        <h3>#Mỹ phẩm thời thượng</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Instagram Section End -->
-
-
     <!-- Latest Blog Section Begin -->
     @include('client.layouts.partials.blog')
     <!-- Latest Blog Section End -->

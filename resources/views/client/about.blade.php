@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="about__pic">
-                        <img src="/client/img/about/about-us.jpg" alt="">
+                        <img src="/client/img/phat-trien-nganh-my-pham.jpg" alt="">
                     </div>
                 </div>
             </div>
