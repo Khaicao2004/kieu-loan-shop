@@ -122,7 +122,7 @@
                                         @endphp
 
                                         @foreach ($contents as $content)
-                                            <p>{{ $content }}</p>
+                                            <p>{!! $content !!}</p>
                                         @endforeach
                                     </div>
                                 </div>

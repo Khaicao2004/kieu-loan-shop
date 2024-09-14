@@ -8,7 +8,7 @@
         'pageTitle' => 'Chi tiết tin tức',
     ])
     <!-- Blog Details Hero Begin -->
-    <section class="blog-hero spad">
+    <section class=" spad">
         <div class="container">
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-9 text-center">
@@ -25,7 +25,7 @@
     <!-- Blog Details Hero End -->
 
     <!-- Blog Details Section Begin -->
-    <section class="blog-details spad">
+    <section class="blog-details spad mt-1">
         <div class="container">
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-12">
